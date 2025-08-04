@@ -2,8 +2,7 @@
 
 **BeatClipper** es una aplicación de escritorio para Windows, creada en C#, que automatiza la creación de clips cortos y virales (formato 9:16) a partir de videos de type beats de YouTube. La herramienta analiza el audio para detectar los "drops" o momentos de mayor energía, generando clips perfectos para YouTube Shorts, TikTok o Instagram Reels.
 
-![_AQUÍ_PUEDES_PONER_UNA_CAPTURA_DE_PANTALLA_DE_LA_APP_FUNCIONANDO_](https://via.placeholder.com/800x450.png?text=Captura+de+pantalla+de+BeatClipper)
-
+https://github.com/LeonardoVS30/BeatClipper/blob/757bda0ec740fabebcfdf3712c2ff6c79e43c6e0/Beatclipper_Demo.png
 ---
 
 ## ¿Qué es BeatClipper?
