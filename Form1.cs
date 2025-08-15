@@ -1,6 +1,4 @@
-﻿// COPIA Y PEGA TODO ESTE CÓDIGO EN TU ARCHIVO Form1.cs. BORRA TODO LO ANTERIOR.
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -12,7 +10,7 @@ using NAudio.Wave;
 using YoutubeExplode;
 using YoutubeExplode.Videos.Streams;
 
-namespace BeatClipper // Asegúrate que este sea el nombre de tu proyecto
+namespace BeatClipper
 {
     public partial class Form1 : Form
     {
@@ -37,7 +35,7 @@ namespace BeatClipper // Asegúrate que este sea el nombre de tu proyecto
 
             try
             {
-                // PASO 0: VERIFICAR HERRAMIENTAS
+                // VERIFICAR HERRAMIENTAS
                 UpdateStatus("Verificando entorno...", 1);
                 if (!File.Exists(_ffmpegPath)) { throw new FileNotFoundException("ffmpeg.exe no se encontró. Asegúrate de que esté configurado como 'Copiar si es posterior'."); }
                 if (!File.Exists(_ytDlpPath)) { throw new FileNotFoundException("yt-dlp.exe no se encontró. Asegúrate de que esté configurado como 'Copiar si es posterior'."); }
@@ -120,10 +118,6 @@ namespace BeatClipper // Asegúrate que este sea el nombre de tu proyecto
                 string outputPath = Path.Combine(outputDirectory, $"clip_{DateTime.Now:yyyyMMdd}_{clipCount++}.mp4");
                 string startTime = momento.Inicio.TotalSeconds.ToString(System.Globalization.CultureInfo.InvariantCulture);
 
-                // --- ESTA ES LA CADENA DE FILTROS CORRECTA Y DEFINITIVA ---
-                // 1. crop=ih:ih -> Recorta un cuadrado del centro del video (alto x alto).
-                // 2. vignette -> Aplica el efecto circular a ese cuadrado.
-                // 3. pad=1080:1920 -> Coloca el resultado en un lienzo vertical de 1080p.
                 string clipArgs = $"-y -ss {startTime} -i \"{videoOriginalPath}\" -t {duracionClipSegundos} -vf \"crop=ih:ih,vignette='PI/4',pad=1080:1920:(ow-iw)/2:(oh-ih)/2:color=black\" -preset veryfast -c:a copy \"{outputPath}\"";
 
                 await RunExternalProcessAsync(_ffmpegPath, clipArgs);
